@@ -1,5 +1,11 @@
 class IngredientsController < ApplicationController
 
+  def index
+    @recipe = Recipe.find(params[:recipe_id])
+    @ingredients = @recipe.ingredients.all
+    render json: @ingredients
+  end
+
   def show
     @recipe = Recipe.find(params[:recipe_id])
     @ingredient = @recipe.ingredients.find(params[:id])

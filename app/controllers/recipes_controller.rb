@@ -7,6 +7,13 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.find(params[:id])
+    @recipe.cost_per_serving = @recipe.total_cost / @recipe.servings
+    @ingredients = @recipe.ingredients.all
+    total_calories = 0
+    @ingredients.each do |ingredient|
+      total_calories = total_calories + ingredient.calories
+    end
+    @recipe.cal_per_serving = total_calories / @recipe.servings
     render json: @recipe
   end
 
