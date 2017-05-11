@@ -1,5 +1,6 @@
 class IngredientsController < ApplicationController
-
+  skip_before_action :verify_authenticity_token
+  
   def index
     @recipe = Recipe.find(params[:recipe_id])
     @ingredients = @recipe.ingredients.all
