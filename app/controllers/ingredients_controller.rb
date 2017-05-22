@@ -1,6 +1,6 @@
 class IngredientsController < ApplicationController
   skip_before_action :verify_authenticity_token
-  
+
   def index
     @recipe = Recipe.find(params[:recipe_id])
     @ingredients = @recipe.ingredients.all
@@ -15,7 +15,7 @@ class IngredientsController < ApplicationController
 
   def create
     @recipe = Recipe.find(params[:recipe_id])
-    @ingredient = @recipe.ingredients.create(ingredients_params)
+    @ingredient = @recipe.ingredients.create(ingredient_params)
     render json: @ingredient
   end
 
